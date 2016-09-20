@@ -82,9 +82,6 @@ public class Parser {
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
-                
-            case FindByTagCommand.COMMAND_WORD:
-                return prepareFindByTag(arguments);
 
             case HelpCommand.COMMAND_WORD: // Fallthrough
             default:
@@ -230,23 +227,6 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
-    
-    /**
-     * Parses arguments in the context of the find by tags command.
-     *
-     * @param args full command args string
-     * @return the prepared command
-     */
-    private Command prepareFindByTag(String args) {
-        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
-        if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindByTagCommand.MESSAGE_USAGE));
-        }
 
-        // keywords delimited by whitespace
-        final String[] keywords = matcher.group("keywords").split("\\s+");
-        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-        return new FindByTagCommand(keywordSet);
-    }
+
 }
