@@ -25,6 +25,9 @@ public class Parser {
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    
+    public static final Pattern EDIT_NAME_ARGS_FORMAT = 
+            Pattern.compile("(?<index>[^/]+)" + "n/(?<newName>[^/]+)");
 
 
     /**
@@ -85,12 +88,16 @@ public class Parser {
                 
             case FindByTagCommand.COMMAND_WORD:
                 return prepareFindByTag(arguments);
+                
+            case EditNameCommand.COMMAND_WORD:
+                return prepareEditName(arguments);
 
             case HelpCommand.COMMAND_WORD: // Fallthrough
             default:
                 return new HelpCommand();
         }
     }
+
 
     /**
      * Parses arguments in the context of the add person command.
@@ -158,6 +165,30 @@ public class Parser {
             return new DeleteCommand(targetIndex);
         } catch (ParseException | NumberFormatException e) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Parses arguments in the context of the edit name command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareEditName(String args) {
+        final Matcher matcher = EDIT_NAME_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditNameCommand.MESSAGE_USAGE));
+        }
+        
+        final String index = matcher.group("index");
+        final String newName = matcher.group("newName");
+        
+        try {
+            final int targetIndex = parseArgsAsDisplayedIndex(index);
+            return new EditNameCommand(targetIndex, newName);
+        } catch (ParseException | NumberFormatException e) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
     }
 

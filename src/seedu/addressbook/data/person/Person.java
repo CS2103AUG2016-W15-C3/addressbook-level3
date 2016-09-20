@@ -65,6 +65,13 @@ public class Person implements ReadOnlyPerson {
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
     }
+    
+    /**
+     * Replaces this person's name with the new name
+     */
+    public void setName(Name name){
+        this.name = name;
+    }
 
     @Override
     public boolean equals(Object other) {

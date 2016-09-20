@@ -75,6 +75,21 @@ Examples:
 * `find Betsy`<br> 
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
+  
+## Editing name of a person : `edit-name`
+Edits the name of the specified person in the address book. Irreversible.<br>
+Format: `edit-name INDEX n/NEW NAME`
+
+> Edits the name of the person at the specified `INDEX`. 
+  The index refers to the index number shown in the most recent listing.
+  
+Examples: 
+* `list`<br>
+  `edit 2 n/Jane`<br>
+  Edits the name of the 2nd person in the address book.
+* `find Betsy`<br> 
+  `edit 1 n/Peter`<br>
+  Edits the name of the 1st person in the results of the `find` command.
 
 ## View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>
