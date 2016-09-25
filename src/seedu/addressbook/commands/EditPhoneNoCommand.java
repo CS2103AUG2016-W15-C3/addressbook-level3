@@ -8,7 +8,7 @@ import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 
 //Edit the phone number of a person in addressbook
 public class EditPhoneNoCommand extends Command {
-    public static final String COMMAND_WORD = "edit-name";
+    public static final String COMMAND_WORD = "edit-phone";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
             + "Edit the phone number of a person identified by the index number.\n\t"
