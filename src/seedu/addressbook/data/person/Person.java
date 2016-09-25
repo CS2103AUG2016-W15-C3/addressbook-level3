@@ -72,6 +72,13 @@ public class Person implements ReadOnlyPerson {
     public void setName(Name name){
         this.name = name;
     }
+    
+    /**
+     * Replaces this person's number with the new number
+     */
+    public void setPhone(Phone phone){
+        this.phone = phone;
+    }
 
     @Override
     public boolean equals(Object other) {
