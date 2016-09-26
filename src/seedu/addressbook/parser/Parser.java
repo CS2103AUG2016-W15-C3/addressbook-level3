@@ -191,6 +191,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
     }
+    
 
     /**
      * Parses arguments in the context of the view command.
