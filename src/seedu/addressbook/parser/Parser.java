@@ -28,7 +28,9 @@ public class Parser {
     
     public static final Pattern EDIT_NAME_ARGS_FORMAT = 
             Pattern.compile("(?<index>[^/]+)" + "n/(?<newName>[^/]+)");
-
+    
+    public static final Pattern EDIT_PHONE_ARGS_FORMAT = 
+            Pattern.compile("(?<index>[^/]+)" + "p/(?<newNumber>[^/]+)");
 
     /**
      * Signals that the user input could not be parsed.
@@ -91,6 +93,9 @@ public class Parser {
                 
             case EditNameCommand.COMMAND_WORD:
                 return prepareEditName(arguments);
+                
+            case EditPhoneCommand.COMMAND_WORD:
+                return prepareEditPhone(arguments);
 
             case HelpCommand.COMMAND_WORD: // Fallthrough
             default:
@@ -187,6 +192,30 @@ public class Parser {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(index);
             return new EditNameCommand(targetIndex, newName);
+        } catch (ParseException | NumberFormatException e) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
+        }
+    }
+    
+    /**
+     * Parses arguments in the context of the edit phone command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareEditPhone(String args) {
+        final Matcher matcher = EDIT_PHONE_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditNameCommand.MESSAGE_USAGE));
+        }
+        
+        final String index = matcher.group("index");
+        final String newNumber = matcher.group("newNumber");
+        
+        try {
+            final int targetIndex = parseArgsAsDisplayedIndex(index);
+            return new EditPhoneCommand(targetIndex, newNumber);
         } catch (ParseException | NumberFormatException e) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }

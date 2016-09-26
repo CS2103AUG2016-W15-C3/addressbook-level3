@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.Objects;
@@ -71,6 +72,14 @@ public class Person implements ReadOnlyPerson {
      */
     public void setName(Name name){
         this.name = name;
+    }
+    
+    /**
+     * Replaces this person's phone number with the new number
+     */
+    public void setPhone(String newNumber){
+        if(this.phone.isValidPhone(newNumber))
+            this.phone.storeNum(newNumber);
     }
 
     @Override
