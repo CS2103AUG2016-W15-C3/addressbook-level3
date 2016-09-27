@@ -31,8 +31,9 @@ public class EditEmailCommand extends Command{
     public CommandResult execute() {
         try {
             Person target = (Person) getTargetPerson();
+            boolean checkPrivate = target.getEmail().isPrivate();
             Person newPerson = target;
-            newPerson.setEmail(newEmail);
+            newPerson.setEmail(new Email(newEmail, checkPrivate));
             addressBook.removePerson(target);
             addressBook.addPerson(newPerson);
             return new CommandResult(String.format(MESSAGE_SUCCESS, newPerson));

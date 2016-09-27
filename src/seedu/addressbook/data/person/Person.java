@@ -85,9 +85,8 @@ public class Person implements ReadOnlyPerson {
     /**
      * Replaces this person's email with the new number
      */
-    public void setEmail(String newEmail){
-        if(this.email.isValidEmail(newEmail))
-            this.email.storeEmail(newEmail);
+    public void setEmail(Email email){
+        this.email = email;
     }
     
     @Override
