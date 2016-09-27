@@ -13,7 +13,8 @@ public class HelpCommand extends Command {
 
     public static final String MESSAGE_ALL_USAGES = AddCommand.MESSAGE_USAGE
             + "\n" + DeleteCommand.MESSAGE_USAGE
-            + "\n" + EditNameCommand.MESSAGE_USAGE 
+            + "\n" + EditNameCommand.MESSAGE_USAGE
+            + "\n" + EditPhoneCommand.MESSAGE_USAGE
             + "\n" + ClearCommand.MESSAGE_USAGE
             + "\n" + FindCommand.MESSAGE_USAGE
             + "\n" + FindByTagCommand.MESSAGE_USAGE

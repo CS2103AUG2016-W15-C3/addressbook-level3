@@ -91,7 +91,7 @@ Examples:
   `edit 1 n/Peter`<br>
   Edits the name of the 1st person in the results of the `find` command.
   
-## Editing phone number of a person : `edit-name`
+## Editing phone number of a person : `edit-phone`
 Edits the name of the specified person in the address book. Irreversible.<br>
 Format: `edit-phone INDEX n/NEW PHONENO`
 
