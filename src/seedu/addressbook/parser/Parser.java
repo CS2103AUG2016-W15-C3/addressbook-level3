@@ -31,6 +31,9 @@ public class Parser {
     
     public static final Pattern EDIT_PHONE_ARGS_FORMAT = 
             Pattern.compile("(?<index>[^/]+)" + "p/(?<newNumber>[^/]+)");
+    
+    public static final Pattern EDIT_EMAIL_ARGS_FORMAT = 
+            Pattern.compile("(?<index>[^/]+)" + "e/(?<newEmail>[^/]+)");
 
     /**
      * Signals that the user input could not be parsed.
@@ -96,7 +99,10 @@ public class Parser {
                 
             case EditPhoneCommand.COMMAND_WORD:
                 return prepareEditPhone(arguments);
-
+            
+            case EditEmailCommand.COMMAND_WORD:
+                return prepareEditEmail(arguments);
+            
             case HelpCommand.COMMAND_WORD: // Fallthrough
             default:
                 return new HelpCommand();
@@ -220,7 +226,31 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
     }
-
+    
+    /**
+     * Parses arguments in the context of the edit email command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareEditEmail(String args) {
+        final Matcher matcher = EDIT_EMAIL_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditEmailCommand.MESSAGE_USAGE));
+        }
+        
+        final String index = matcher.group("index");
+        final String newEmail = matcher.group("newEmail");
+        
+        try {
+            final int targetIndex = parseArgsAsDisplayedIndex(index);
+            return new EditEmailCommand(targetIndex, newEmail);
+        } catch (ParseException | NumberFormatException e) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
+        }
+    }
+    
     /**
      * Parses arguments in the context of the view command.
      *

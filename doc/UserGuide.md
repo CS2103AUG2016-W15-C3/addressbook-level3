@@ -103,6 +103,18 @@ Examples:
   `edit 2 n/Jane`<br>
   Edits the name of the 2nd person in the address book.
 
+## Editing email of a person : `edit-email`
+Edits the email of the specified person in the address book. Irreversible.<br>
+Format: `edit-email INDEX n/NEW EMAIL`
+
+> Edits the email of the person at the specified `INDEX`. 
+  The index refers to the index number shown in the most recent listing.
+  
+Examples: 
+* `list`<br>
+  `edit-email 2 n/Jane@gmail.com`<br>
+  Edits the email of the 2nd person in the address book.
+  
 ## View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>
 Format: `view INDEX`
