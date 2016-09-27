@@ -15,7 +15,7 @@ public class EditEmailCommand extends Command{
     
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" 
             + "Edit the email of a person identified by the index number used in the last person listing.\n\t"
-            + "Parameters: INDEX n/NEW Email\n\t"
+            + "Parameters: INDEX e/NEW Email\n\t"
             + "Example: " + COMMAND_WORD + " 1 e/12345@gmail.com";
     
     public static final String MESSAGE_SUCCESS = "Contact updated: %1$s";
