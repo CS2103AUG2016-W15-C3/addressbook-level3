@@ -77,11 +77,17 @@ public class Person implements ReadOnlyPerson {
     /**
      * Replaces this person's phone number with the new number
      */
-    public void setPhone(String newNumber){
-        if(this.phone.isValidPhone(newNumber))
-            this.phone.storeNum(newNumber);
+    public void setPhone(Phone phone){
+        this.phone = phone;
     }
-
+    
+    /**
+     * Replaces this person's email with the new number
+     */
+    public void setEmail(Email email){
+        this.email = email;
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
