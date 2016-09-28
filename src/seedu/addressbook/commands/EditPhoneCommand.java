@@ -3,6 +3,7 @@ package seedu.addressbook.commands;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 
 /**
@@ -31,7 +32,8 @@ public class EditPhoneCommand extends Command{
         try {
             Person target = (Person) getTargetPerson();
             Person newPerson = target;
-            newPerson.setPhone(newNumber);
+            Boolean isPrivate = target.getPhone().getPrivate();
+            newPerson.setPhone(new Phone(newNumber,isPrivate));
             addressBook.removePerson(target);
             addressBook.addPerson(newPerson);
             return new CommandResult(String.format(MESSAGE_SUCCESS, newPerson));

@@ -12,7 +12,7 @@ public class Phone {
     public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
     public static final String PHONE_VALIDATION_REGEX = "\\d+";
 
-    public static String value;
+    public String value;
     private boolean isPrivate;
 
     /**
@@ -31,14 +31,30 @@ public class Phone {
     /**
      * Store new valid phone number
      */
-    public static void storeNum(String newValue){
+    public void storeNum(String newValue){
         value = newValue;
     }
+    
+    /*
+     * Returns the value of isPrivate
+     * Whether the number is private or not
+     */
+    public boolean getPrivate(){
+        return isPrivate;
+    }
+    
 
+    /*
+     * Returns the phoneNumber
+     */
+    public String getNumber(){
+        return value;
+    }
+    
     /**
      * Checks if a given string is a valid person phone number.
      */
-    public static boolean isValidPhone(String test) {
+    public boolean isValidPhone(String test) {
         return test.matches(PHONE_VALIDATION_REGEX);
     }
 
