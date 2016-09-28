@@ -29,7 +29,8 @@ public class Email {
         }
         this.value = email;
     }
-
+    
+    
     /**
      * Checks if a given string is a valid person email.
      */

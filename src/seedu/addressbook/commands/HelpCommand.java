@@ -15,6 +15,7 @@ public class HelpCommand extends Command {
             + "\n" + DeleteCommand.MESSAGE_USAGE
             + "\n" + EditNameCommand.MESSAGE_USAGE
             + "\n" + EditPhoneCommand.MESSAGE_USAGE
+            + "\n" + EditEmailCommand.MESSAGE_USAGE
             + "\n" + ClearCommand.MESSAGE_USAGE
             + "\n" + FindCommand.MESSAGE_USAGE
             + "\n" + FindByTagCommand.MESSAGE_USAGE
